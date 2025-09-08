@@ -3,20 +3,39 @@
     <head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        
         <title>Tailwind CSS Homepage Demo</title>
-        <!-- Load Tailwind CSS via CDN -->
+
+        <!-- Load Tailwind CSS via CDN (not a best practice but enough for this small test website) -->
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     </head>
-
     <body class="antialiased bg-gray-50 text-white">
-        <nav class="bg-indigo-950 h-16">
-            <div class="flex items-center justify-between h-full px-4 mx-4">
-                <img href="#" src="assets/companyLogo_compressed.png" class="h-30"/>
-                <ul class="flex gap-6">
-                    <li><a href="#" class="text-xl hover:text-gray-200">About</a></li>
-                    <li><a href="#" class="text-xl hover:text-gray-200">Services</a></li>
-                    <li><a href="#" class="text-xl hover:text-orange-300 text-orange-400 border-2 rounded-full p-1.5">Contact Us</a></li>
+       <nav class="bg-indigo-950">
+            <div class="flex items-center justify-between h-16 px-4 mx-4">
+                <img src="assets/companyLogo_compressed.png" class="h-30"/>
+                
+                <!-- Desktop links -->
+                <ul class="hidden md:flex gap-6">
+                <li><a href="#" class="text-xl hover:text-gray-200">About</a></li>
+                <li><a href="#" class="text-xl hover:text-gray-200">Services</a></li>
+                <li><a href="#" class="text-xl hover:text-orange-300 text-orange-400 border-2 rounded-full p-1.5">Contact Us</a></li>
                 </ul>
+
+                <!-- Mobile burger menu button -->
+                <button id="menu-btn" class="md:hidden text-white focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" 
+                    class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                        d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+                </button>
+            </div>
+
+            <!-- Mobile menu -->
+            <div id="menu" class="hidden md:hidden flex-col space-y-2 px-4 pb-4">
+                <a href="#" class="block text-xl hover:text-gray-200">About</a>
+                <a href="#" class="block text-xl hover:text-gray-200">Services</a>
+                <a href="#" class="block text-xl hover:text-orange-300 text-orange-400">Contact Us</a>
             </div>
         </nav>
         <section class="bg-gradient-to-r from-indigo-700 to-indigo-900">
@@ -37,4 +56,11 @@
             </div>
         </section>
     </body>
+    <script>
+        const button = document.getElementById("menu-btn");
+        const menu = document.getElementById("menu");
+        button.addEventListener("click", () => {
+            menu.classList.toggle("hidden");
+        });
+    </script>
 </html>
